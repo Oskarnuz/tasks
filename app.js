@@ -1,15 +1,15 @@
 document.getElementById("formTask").addEventListener("submit", saveTask);
 
 function saveTask(e) {
-    
+    // Declare variables for input the form values
     let title = document.getElementById("title").value;
     let description = document.getElementById("description").value;
 
     let task = {
-        title, //title: title
+        title, //title: title (Nueva funcion de .js)
         description //description: description
     };
-    
+    /* Evaluated if the form has information and add new values, saving in the localStorage, converting to JSON (returning string ) */
     if (localStorage.getItem("tasks") === null) {
         let tasks = [];
         tasks.push(task);
@@ -19,12 +19,12 @@ function saveTask(e) {
         tasks.push(task);
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }
-
+// Deleted the values that was already saved in the array and that is still displayed in the form
     getTasks();
     document.getElementById('formTask').reset();
     e.preventDefault();
 }
-
+// Convert the string of the JSON to values and it's displayed in the DOM
 function getTasks() {
   let tasks = JSON.parse(localStorage.getItem('tasks'));
   let tasksView = document.getElementById('tasks');
@@ -42,7 +42,7 @@ function getTasks() {
       </div>`;
   }
 }
-
+// Create the function to delete the values saved in the form (Array)
 function deleteTask(title) {
     console.log(title)
     let tasks = JSON.parse(localStorage.getItem('tasks'));
